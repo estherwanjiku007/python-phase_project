@@ -53,24 +53,28 @@ def app():
                  update_song()
             elif the_choice=="15":
                  delete_song()
+            else:print("Invalid option")
                 
 def menu():
     print("Please select an option:")
-    print("1. Exit the program")
-    print("2. List_artists")
-    print("3. Find artist by name")
-    print("4. Find artist by id")
-    print("5: Find artist by email")
-    print("6: Create artist")
-    print("7: update artist")
-    print("8. delete artist")
-    print("9. list songs")
-    print("10. Find song by id")   
-    print("11: find song by name")
-    print("12: find song by release_yr")
-    print("13: create song")
-    print("14: update song")
-    print("15: delete song")
+    print("---ARTISTS---")
+    print("1. Exit the program .")
+    print("2. List_artists  .")
+    print("3. Find artist by name .")
+    print("4. Find artist by id .")
+    print("5: Find artist by email .")
+    print("6: Create artist .")
+    print("7: update artist .")
+    print("8. delete artist .")
+
+    print("---SONGS---")
+    print("9. list songs .")
+    print("10. Find song by id .")   
+    print("11: find song by name .")
+    print("12: find song by release_yr .")
+    print("13: create song  .")
+    print("14: update song  .")
+    print("15: delete song  .")
 
 
             

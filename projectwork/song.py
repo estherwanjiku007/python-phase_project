@@ -10,7 +10,7 @@ class Song:
         self.release_yr=release_yr        
     
     def __repr__(self):
-       return f"Song {self.id} {self.name} {self.release_yr}"
+       return f"<Song {self.id}: {self.name} | {self.release_yr}\n"
     
     @property
     def name(self):
@@ -32,19 +32,20 @@ class Song:
             self._release_yr=value
         else:raise ValueError("Name must be a string of length greater than zero")
 
-#     @classmethod
-#     def create_table(cls):
-#         CURSOR.execute('''CREATE TABLE IF NOT EXISTS songs(
-#                        id INTEGER PRIMARY KEY,
-#                        song TEXT NOT NULL,
-#                        release_yr TEXT NOT NULL,
-# );''')
-#         print("Table created successfully")
-#         CONN.commit()    
+    @classmethod
+    def create_table(cls):
+        CURSOR.execute('''CREATE TABLE IF NOT EXISTS songs(
+                            id INTEGER PRIMARY KEY,
+                            name TEXT NOT NULL,
+                            release_yr TEXT NOT NULL
+                    )''')
+        print("Song table created successfully")
+        CONN.commit()    
     
-#     @classmethod
-#     def delete_table(cls):
-#         CURSOR.execute("DROP TABLE IF EXISTS songs")
+    @classmethod
+    def delete_table(cls):
+        CURSOR.execute("DROP TABLE IF EXISTS songs")
+        CONN.commit()
 
     
     def save(self):
@@ -62,6 +63,7 @@ class Song:
        # id_=CURSOR.lastrowid
         new_song=cls(song,release_yr)#Create an instance of the class
         new_song.save()#Calling the save method
+        return new_song
 
     def update(self):
         #Method to change the value of a current song to a a new song

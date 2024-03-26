@@ -1,4 +1,5 @@
 #from database import CONN,CURSOR
+
 import sqlite3
 CONN=sqlite3.connect("mymusic.db")
 CURSOR=CONN.cursor()
@@ -11,8 +12,8 @@ class Artist:
         self._email=email       
         self._song_id=song_id       
     
-    # def __repr__(self):
-    #     return f"<artist {self.id}:{self.name} {self.email} {self.song_id}"
+    def __repr__(self):
+        return f"<Artist {self.id}:{self.name}, {self.email}, {self.song_id}\n"
     
     @property
     def name(self):
@@ -47,22 +48,24 @@ class Artist:
             self._email=value
         else:raise ValueError("Email name must be a string  that has a length greater than zero")
     
-    # @classmethod
-    # def create_table(cls):
-    #     CURSOR.execute("""CREATE TABLE IF NOT EXISTS artists(
-    #                    id INTEGER PRIMARY KEY,
-    #                    name TEXT NOT NULL,
-    #                    email TEXT NOT NULL,
-    #                    song_id INTEGER,
-    #                    FOREIGN KEY (song_id) REFERENCES songs(id)
-    #     );""")
-    #     CONN.commit()
-    # @classmethod
-    # def delete_table(cls):
-    #     CURSOR.execute("DROP TABLE IF EXISTS artists;")
-    #     CONN.commit()
+    @classmethod
+    def create_table(cls):
+        CURSOR.execute("""CREATE TABLE IF NOT EXISTS artists(
+                       id INTEGER PRIMARY KEY,
+                       name TEXT NOT NULL,
+                       email TEXT NOT NULL,
+                       song_id INTEGER,
+                       FOREIGN KEY (song_id) REFERENCES songs(id)
+                        )""")
+        CONN.commit()
+        print("Artist table created successfully")
+        
+    @classmethod
+    def delete_table(cls):
+        CURSOR.execute("DROP TABLE IF EXISTS artists;")
+        CONN.commit() # saves changes made to the db
 
-    #Method to add the new artist to the database
+    # Method to add the new artist to the database
     def save(self):
         sql="""
         INSERT INTO artists(name,email,song_id) VALUES(?,?,?)

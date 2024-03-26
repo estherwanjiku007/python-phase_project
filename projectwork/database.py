@@ -1,5 +1,5 @@
 import sqlite3
-CONN=sqlite3.connect("music.db")#Create a database
+CONN=sqlite3.connect("mymusic.db")#Create a database
 CURSOR=CONN.cursor()#Create a cursor where we will run the commands
 #Create the songs table
 #CURSOR.execute("DROP TABLE IF EXISTS songs;")#Deleting the table

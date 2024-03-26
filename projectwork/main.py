@@ -2,19 +2,22 @@ from artist import Artist
 from song import Song
 
 def new_data():
-  # Song.delete_table()
-  # Artist.delete_table()
-  # Song.create_table()
-  # Artist.create_table()
+  Song.delete_table()
+  Artist.delete_table()
+  Song.create_table()
+  Artist.create_table()
 
   song1=Song.create("Shusha_Nyavu","2020")  
   Artist.create("Chrirstina Shusho","Christina_Shusho@gmail.com",song1.id)
   song2=Song.create("Vimbada","2018")  
   song3=Song.create("Ngori","2016")  
-  Artist("Moji Shotbaba","Shotbaba@gmail.com",song2.id)
-  Artist("Jabidii","Jabidii@gmail.com",song3.id)
+  Artist.create("Moji Shotbaba","Shotbaba@gmail.com",song2.id)
+  Artist.create("Jabidii","Jabidii@gmail.com",song3.id)
 
  
+if __name__ == "__main__":
+    new_data()
+
 
  
 
