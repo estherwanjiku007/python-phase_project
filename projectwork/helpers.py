@@ -44,8 +44,10 @@ def update_artist():
     id_=input("Enter the artist's id:\n> ")
     if artist:=Artist.find_by_id(id_):
         try:
-            artist.name=input("Enter the artist's new name:\n> ")
-            artist.email=input("Enter the artist's new email:\n> ")
+            artist_name=input("Enter the artist's new name:\n> ")
+            artist_email=input("Enter the artist's new email:\n> ")
+            artist._name=artist_name
+            artist._email=artist_email
             artist.update()
             print(f"Your new arist's name is {artist.name} and email is{artist.email}")
         except Exception as error:("Error while upating artist",error)
@@ -82,7 +84,7 @@ def find_song_by_release_yr():
     release_yr=input("Enter the song's release year:\n> ")
     if song:=Song.find_by_release_year(release_yr):
         print(song)
-    else:print(f" sorry,Release year {song} not found ")
+    else:print(f" sorry,Release year {release_yr} not found ")
 
 def create_song():    
         song=input("Enter the song's name:\n> ")

@@ -13,7 +13,7 @@ class Artist:
         self._song_id=song_id       
     
     def __repr__(self):
-        return f"<Artist {self.id}:{self.name}, {self.email}, {self.song_id}\n"
+        return f"<Artist {self.id}:{self._name}, {self._email}, {self._song_id}\n"
     
     @property
     def name(self):
@@ -33,7 +33,7 @@ class Artist:
     #Check if the song_id is an insance of the id in songs table 
     @song_id.setter
     def song_id(self,value):
-        if isinstance(value,int) and len(value)>0 :
+        if isinstance(value,int) and Song.find_by_id(value) :
             self._song_id=value
         else:raise ValueError("Song_id must be an integer  that must be an instance of a song")
 
@@ -86,7 +86,7 @@ class Artist:
         return new_artist
     
     def update(self):
-        sql="UPDATE artists SET name=? email=? song_id=? WHERE id =?"
+        sql="UPDATE artists SET name=?,email=?,song_id=? WHERE id =?"
         CURSOR.execute(sql,(self._name,self._email,self._song_id,self.id)) 
         CONN.commit()
 
@@ -116,6 +116,7 @@ class Artist:
     def get_all(cls):
         sql="SELECT * FROM artists"
         rows=CURSOR.execute(sql).fetchall()#Return the data from the database        
+        #CONN.commit()
         return [cls.instance_from_db(row) for row in rows]
         
     @classmethod
